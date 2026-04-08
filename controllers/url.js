@@ -13,7 +13,7 @@ async function handlegenerateShortUrl(req, res) {
     visitHistory: [],
     createdBy: req.user._id,
   });
-  const baseURL = process.env.BASE_URL || `http://localhost:8001`;
+  const baseURL = process.env.BASE_URL;
   return res.render("home", { id: shortID, baseURL });
   // return res.json({ id: shortID });
 }
