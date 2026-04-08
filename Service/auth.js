@@ -3,7 +3,6 @@
 const jwt = require("jsonwebtoken");
 // secrete key
 const SECRET = process.env.JWT_SECRET;
-console.log("JWT SECRET:", SECRET);
 // function setUser(id, user) {
 //   sessionIdToUserMap.set(id, user);
 // }
