@@ -1,181 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home page</title>
-    <style>
-  * {
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .container {
-    background: #ffffff;
-    width: 90%;
-    max-width: 900px;
-    padding: 30px 40px;
-    border-radius: 14px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-  }
-
-  h1 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 25px;
-  }
-
-  p {
-    background: #f0f9ff;
-    color: #0369a1;
-    padding: 12px 15px;
-    border-radius: 8px;
-    font-weight: 600;
-    margin-bottom: 20px;
-    word-break: break-all;
-  }
-
-  form {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 30px;
-  }
-
-  form input {
-    flex: 1;
-    padding: 12px 14px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    font-size: 15px;
-    outline: none;
-    transition: border 0.3s;
-  }
-
-  form input:focus {
-    border-color: #667eea;
-  }
-
-  form button {
-    background: #667eea;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 8px;
-    font-size: 15px;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
-  }
-
-  form button:hover {
-    background: #5a67d8;
-    transform: translateY(-1px);
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-  }
-
-  thead {
-    background: #667eea;
-    color: white;
-  }
-
-  thead th {
-    padding: 12px;
-    text-align: left;
-  }
-
-  tbody tr {
-    border-bottom: 1px solid #e5e7eb;
-    transition: background 0.2s;
-  }
-
-  tbody tr:hover {
-    background: #f9fafb;
-  }
-
-  tbody td {
-    padding: 10px 12px;
-    color: #333;
-    font-size: 14px;
-  }
-
-  tbody td:nth-child(2) {
-    font-weight: 600;
-    color: #4f46e5;
-  }
-
-  @media (max-width: 600px) {
-    form {
-      flex-direction: column;
-    }
-
-    form button {
-      width: 100%;
-    }
-  }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>URL Shortener</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family:"Segoe UI", Tahoma, Geneva, Verdana, sans-serif; min-height:100vh; background:#f3f4f6; }
+nav { width:100%; background:#111827; padding:12px 40px; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:10; }
+nav .logo { color:white; font-size:22px; font-weight:700; text-decoration:none; }
+nav ul { list-style:none; display:flex; gap:20px; }
+nav ul li a { color:white; text-decoration:none; font-weight:500; padding:6px 12px; border-radius:6px; transition:0.3s; }
+nav ul li a:hover { background:#f97316; transform:translateY(-2px); }
+.container { background:white; width:90%; max-width:900px; margin:40px auto; padding:30px 40px; border-radius:14px; box-shadow:0 20px 40px rgba(0,0,0,0.1); }
+h1 { text-align:center; color:#111827; margin-bottom:25px; }
+p { background:#fff7ed; color:#b45309; padding:12px 15px; border-radius:8px; font-weight:600; margin-bottom:20px; word-break:break-all; }
+form { display:flex; gap:10px; margin-bottom:30px; }
+form input { flex:1; padding:12px 14px; border-radius:8px; border:1px solid #ccc; font-size:15px; outline:none; transition:border 0.3s; }
+form input:focus { border-color:#111827; }
+form button { background:#111827; color:white; border:none; padding:12px 20px; border-radius:8px; font-size:15px; cursor:pointer; transition:0.3s; }
+form button:hover { background:#f97316; transform:translateY(-1px); }
+table { width:100%; border-collapse:collapse; margin-top:10px; }
+thead { background:#111827; color:white; }
+thead th { padding:12px; text-align:left; }
+tbody tr { border-bottom:1px solid #e5e7eb; transition:background 0.2s; }
+tbody tr:hover { background:#fff7ed; }
+tbody td { padding:10px 12px; color:#111827; font-size:14px; }
+tbody td:nth-child(2) { font-weight:600; color:#b45309; }
+@media(max-width:600px){ form{flex-direction:column;} form button{width:100%;} }
 </style>
-
 </head>
-
 <body>
-    <div class="container">
-        
-            <h1>URL Shortener</h1>
-            <form method="post" action="/url">
-                <label>Enter the orignal Url</label>
-                <input type="text" name="url" placeholder="http://example.com" />
-                <button type="submit">Generate</button>
-            </form>
-             <% if (locals.id) { %>
-                <p>URL Generated: <%= locals.baseURL %>/<%= id %></p>
-                </p>
-            <% } %>
-            <% if (locals.urls && urls.length>0) { %>
-                <div>
-                    <table>
-                        <thead>
-                            <th>S.No</th>
-                            <th>ShortId</th>
-                            <th>RedirectURL</th>
-                            <th>Clicks</th>
-                        </thead>
-                        <tbody>
-                            <% urls.forEach((url, index)=> { %>
-                                <tr>
-                                    <td>
-                                        <%= index + 1 %>
-                                    </td>
-                                    <td>
-                                        <%= url.shortId %>
-                                    </td>
-                                    <td>
-                                        <%= url.redirectURL %>
-                                    </td>
-                                    <td>
-                                        <%= url.visitHistory.length %>
-                                    </td>
-                                </tr>
-                                <% }) %>
-                        </tbody>
+<nav>
+  <a href="/" class="logo">URL Shortener</a>
+  <ul>
+    <li><a href="/login">Login</a></li>
+    <li><a href="/signup">Signup</a></li>
+  </ul>
+</nav>
 
-                    </table>
-                </div>
-                <% } %>
-           
-    </div>
+<div class="container">
+<h1>URL Shortener</h1>
+<form method="post" action="/url">
+  <input type="text" name="url" placeholder="http://example.com" />
+  <button type="submit">Generate</button>
+</form>
+
+<% if (locals.id) { %>
+  <p>URL Generated: 
+    <a href="<%= locals.baseURL %>/<%= id %>" target="_blank" style="color:#f97316; font-weight:600;">
+      <%= locals.baseURL %>/<%= id %>
+    </a>
+  </p>
+<% } %>
+
+<% if (locals.urls && urls.length>0) { %>
+<table>
+  <thead>
+    <th>S.No</th>
+    <th>ShortURL</th>
+    <th>RedirectURL</th>
+    <th>Clicks</th>
+  </thead>
+  <tbody>
+    <% urls.forEach((url,index)=>{ %>
+    <tr>
+      <td><%= index+1 %></td>
+     <td>
+        <a href="<%= baseURL %>/<%= url.shortId %>" target="_blank" style="color:#f97316; font-weight:600; text-decoration:underline;">
+          <%= baseURL %>/<%= url.shortId %>
+        </a>
+      </td>
+      <td>
+        <a href="<%= url.redirectURL %>" target="_blank" style="color:#b45309; font-weight:600; text-decoration:underline;">
+          <%= url.redirectURL %>
+        </a>
+      </td>
+      <td><%= url.visitHistory.length %></td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
+<% } %>
+</div>
 </body>
-
 </html>
