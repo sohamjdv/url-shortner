@@ -15,9 +15,18 @@ const staticRouter = require("./routes/staticROuters");
 const userRoute = require("./routes/user");
 
 const mongo_url=process.env.MONGO
-connectToMongoDb(mongo_url).then(() => {
-  console.log("mongoDb connected...");
-});
+
+try{
+  if(!mongo_url){
+    throw new Error("MongoDB connection URL is not defined in environment variables.");
+  }
+  connectToMongoDb(mongo_url).then(() => {
+    console.log("mongoDb connected...");
+  });
+}catch(err){
+  console.error("Error connecting to MongoDB:", err.message);
+  process.exit(1); 
+}
 
 
 app.set("view engine", "ejs");
@@ -52,6 +61,6 @@ app.get("/:shortId", async (req, res) => {
   res.redirect(entry.redirectURL);
 });
 
-const PORT = 8001;
+const PORT = process.env.PORT || 8001;
 
-app.listen(PORT, () => console.log(`Server has Started on Port : ${PORT} http://loacalhost:8001` ));
+app.listen(PORT, () => console.log(`Server has Started on Port : ${PORT} http://localhost:${PORT}` ));

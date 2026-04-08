@@ -1,105 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up</title>
-   <style>
-  * {
-    box-sizing: border-box;
-  }
 
-  body {
-    margin: 0;
-    height: 100vh;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-  .signup-container {
-    background: #ffffff;
-    padding: 35px 40px;
-    width: 100%;
-    max-width: 420px;
-    border-radius: 14px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
-  }
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        font-family:
+          Segoe UI,
+          Tahoma,
+          Geneva,
+          Verdana,
+          sans-serif;
+      }
 
-  h1 {
-    text-align: center;
-    margin-bottom: 25px;
-    color: #333;
-  }
+      .signup-container {
+        background: white;
+        padding: 40px;
+        width: 100%;
+        max-width: 420px;
+        border-radius: 16px;
+        box-shadow: 0 25px 45px rgba(0, 0, 0, 0.25);
+      }
 
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
+      h1 {
+        text-align: center;
+        margin-bottom: 25px;
+        color: #333;
+      }
 
-  label {
-    font-size: 14px;
-    font-weight: 600;
-    color: #555;
-  }
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
 
-  input {
-    padding: 12px 14px;
-    font-size: 14px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    outline: none;
-    transition: border 0.3s, box-shadow 0.3s;
-  }
+      label {
+        font-size: 14px;
+        font-weight: 600;
+        color: #444;
+      }
 
-  input:focus {
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
-  }
+      input {
+        padding: 12px;
+        font-size: 14px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        transition: 0.3s;
+      }
 
-  button {
-    margin-top: 18px;
-    padding: 12px;
-    font-size: 15px;
-    font-weight: 600;
-    background: #667eea;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
-  }
+      input:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        outline: none;
+      }
 
-  button:hover {
-    background: #5a67d8;
-    transform: translateY(-1px);
-  }
+      button {
+        margin-top: 15px;
+        padding: 12px;
+        font-size: 15px;
+        font-weight: 600;
+        background: #667eea;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
 
-  button:active {
-    transform: translateY(0);
-  }
-</style>
+      button:hover {
+        background: #5a67d8;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+      }
 
-</head>
-<body>
+      .login-text {
+        text-align: center;
+        margin-top: 18px;
+        font-size: 14px;
+      }
+
+      .login-text a {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .login-text a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
     <div class="signup-container">
-    <h1>Sign Up</h1>
+      <h1>Create Account</h1>
 
-    <form method="post" action="/user">
-      <label>Name</label>
-      <input type="text" name="name" placeholder="Enter your Name" required>
+      <form method="post" action="/user/signup">
+        <label>Name</label>
+        <input type="text" name="name" placeholder="Enter your name" required />
 
-      <label>Email</label>
-      <input type="email" name="email" placeholder="Enter your Email" required>
+        <label>Email</label>
+        <input
+          type="email"
+          name="email"
+          placeholder="Enter your email"
+          required
+        />
 
-      <label>Password</label>
-      <input type="password" name="password" placeholder="Enter your Password" required>
+        <label>Password</label>
+        <input
+          type="password"
+          name="password"
+          placeholder="Create password"
+          required
+        />
 
-      <button type="submit">Sign Up</button>
-    </form>
-  </div>
-</body>
+        <button type="submit">Sign Up</button>
+      </form>
+
+      <div class="login-text">
+        Already have an account?
+        <a href="/login">Login</a>
+      </div>
+    </div>
+  </body>
 </html>

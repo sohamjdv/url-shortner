@@ -139,7 +139,11 @@
                 <input type="text" name="url" placeholder="http://example.com" />
                 <button type="submit">Generate</button>
             </form>
-            <% if (locals.urls) { %>
+             <% if (locals.id) { %>
+                <p>URL Generated:http://localhost:8001/<%= id %>
+                </p>
+            <% } %>
+            <% if (locals.urls && urls.length>0) { %>
                 <div>
                     <table>
                         <thead>
@@ -170,10 +174,7 @@
                     </table>
                 </div>
                 <% } %>
-            <% if (locals.id) { %>
-                <p>URL Generated:http://localhost:8001/<%= id %>
-                </p>
-            <% } %>
+           
     </div>
 </body>
 
