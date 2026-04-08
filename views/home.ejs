@@ -140,7 +140,7 @@
                 <button type="submit">Generate</button>
             </form>
              <% if (locals.id) { %>
-                <p>URL Generated:https://url-shortner-ssfv.onrender.com/login/<%= id %>
+                <p>URL Generated: <%= baseURL %>/<%= id %></p>
                 </p>
             <% } %>
             <% if (locals.urls && urls.length>0) { %>
